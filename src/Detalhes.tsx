@@ -1,4 +1,4 @@
-import type { CarroType } from "./utils/CarroType"
+import type { CarroType } from "./utils/LenteType"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useClienteStore } from "./context/ClienteContext"

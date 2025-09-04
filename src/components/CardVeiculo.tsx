@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-import type { CarroType } from "../utils/CarroType"
+import type { LenteType } from "../utils/LenteType"
+import type { OculosType } from "../utils/OculosType"
 
-export function CardVeiculo({data}: {data: CarroType}) {
+export function CardVeiculo({data}: {data: LenteType }) {
     return (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
             <img className="rounded-t-lg" src={data.foto} alt="Foto" />
@@ -15,7 +16,7 @@ export function CardVeiculo({data}: {data: CarroType}) {
                     })}
                 </p>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Ano: {data.ano} - {data.combustivel}
+                    Lente: {data.indice} - {data.tratamento} - {data.preco}
                 </p>
                 <Link to={`/detalhes/${data.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Ver Detalhes

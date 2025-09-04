@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import type { CarroType } from "../utils/CarroType";
+import type { CarroType } from "../utils/LenteType";
 
 const apiUrl = import.meta.env.VITE_API_URL
 

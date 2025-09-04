@@ -1,4 +1,4 @@
-import type { CarroType } from "./CarroType"
+import type { CarroType } from "./LenteType"
 
 export type PropostaType = {
   id: number
