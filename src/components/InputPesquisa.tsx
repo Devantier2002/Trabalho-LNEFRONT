@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import type { CarroType } from "../utils/CarroType";
+import type { OculosType } from "../utils/OculosType";
 
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -9,10 +9,10 @@ type Inputs = {
 }
 
 type InputPesquisaProps = {
-    setCarros: React.Dispatch<React.SetStateAction<CarroType[]>>
+    setOculos: React.Dispatch<React.SetStateAction<OculosType[]>>
 }
 
-export function InputPesquisa({ setCarros }: InputPesquisaProps) {
+export function InputPesquisa({ setOculos }: InputPesquisaProps) {
     const { register, handleSubmit, reset } = useForm<Inputs>()
 
     async function enviaPesquisa(data: Inputs) {
@@ -25,14 +25,14 @@ export function InputPesquisa({ setCarros }: InputPesquisaProps) {
         const response = await fetch(`${apiUrl}/carros/pesquisa/${data.termo}`)
         const dados = await response.json()
         // console.log(dados)
-        setCarros(dados)
+        setOculos(dados)
     }
 
     async function mostraDestaques() {
-        const response = await fetch(`${apiUrl}/carros`)
+        const response = await fetch(`${apiUrl}/oculos`)
         const dados = await response.json()
         reset({ termo: "" })
-        setCarros(dados)
+        setOculos(dados)
     }
 
     return (
