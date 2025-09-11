@@ -9,6 +9,7 @@ import MinhasVendas from './MinhasVendas.tsx'
 
 import Layout from './Layout.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Cadastro from './Cadastro.tsx'
 
 const rotas = createBrowserRouter([
   {
@@ -17,8 +18,9 @@ const rotas = createBrowserRouter([
     children: [
       { index: true, element: <App /> },
       { path: 'login', element: <Login /> },
-  { path: 'detalhes/:oculosId', element: <Detalhes /> },
+      { path: 'detalhes/:oculosId', element: <Detalhes /> },
       { path: 'minhasVendas', element: <MinhasVendas /> },
+      { path: 'cadastro', element: <Cadastro /> }
     ],
   },
 ])
