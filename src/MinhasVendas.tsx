@@ -62,7 +62,7 @@ export default function Vendas() {
     return (
         <section className="max-w-7xl mx-auto">
             <h1 className="mb-6 mt-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-                Minhas <span className="underline underline-offset-3 decoration-8 decoration-purple-400 dark:decoration-purple-600">Compras</span></h1>
+                Minhas <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Compras</span></h1>
 
             {vendas.length === 0 ?
                 <h2 className="mb-4 mt-10 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">

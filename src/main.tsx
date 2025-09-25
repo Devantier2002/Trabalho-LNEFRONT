@@ -6,7 +6,7 @@ import App from './App.tsx'
 import Login from './Login.tsx'
 import Detalhes from './Detalhes.tsx'
 import MinhasVendas from './MinhasVendas.tsx'
-
+import Cadastro from './Cadastro.tsx'
 import Layout from './Layout.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -17,8 +17,9 @@ const rotas = createBrowserRouter([
     children: [
       { index: true, element: <App /> },
       { path: 'login', element: <Login /> },
-  { path: 'detalhes/:oculosId', element: <Detalhes /> },
+      { path: 'detalhes/:oculosId', element: <Detalhes /> },
       { path: 'minhasVendas', element: <MinhasVendas /> },
+      { path: 'cadastro', element: <Cadastro /> },
     ],
   },
 ])

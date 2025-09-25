@@ -41,7 +41,7 @@ export default function App() {
       <InputPesquisa setOculos={setOculos} />
       <div className="max-w-7xl mx-auto">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black">
-          Óculos <span className="underline underline-offset-3 decoration-8 decoration-purple-400 dark:decoration-purple-600">em destaque</span>
+          Óculos <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">em destaque</span>
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {listaOculos}

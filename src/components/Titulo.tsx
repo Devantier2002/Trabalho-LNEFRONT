@@ -17,11 +17,11 @@ export default function Titulo() {
     }
 
     return (
-        <nav className="border-purple-800 bg-purple-600 dark:bg-black dark:border-black">
+        <nav className="border-blue-800 bg-blue-600 dark:bg-black dark:border-black">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="./pngegg.png" className="h-12" alt="Logo Herbie" />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
                         Otica Avenida
                     </span>
                 </Link>
@@ -32,23 +32,23 @@ export default function Titulo() {
                     </svg>
                 </button>
                 <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-                    <ul className="flex flex-col font-medium mt-4 rounded-lg bg-black md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-black md:dark:bg-transparent dark:border-black">
+                    <ul className="flex flex-col font-medium mt-4 rounded-lg bg-black md:space-x-16 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-black md:dark:bg-transparent dark:border-black">
                         <li>
                             {cliente.id ?
                                 <>
-                                    <span className="text-black">
+                                    <span className="text-white">
                                         {cliente.nome}
-                                    </span>&nbsp;&nbsp;
-                                    <Link to="/minhasVendas" className="text-black font-bold bg-purple-800 hover:bg-purple-900 focus:ring-2 focus:outline-none focus:ring-purple-400 rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-700">
+                                    </span>
+                                    <Link to="/minhasVendas" className="text-white font-bold bg-blue-800 hover:bg-blue-900 focus:ring-2 focus:outline-none focus:ring-blue-400 rounded-lg text-sm w-full sm:w-auto px-3 py-2 mx-4 text-center dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-700">
                                         Minhas Compras
-                                    </Link>&nbsp;&nbsp;
-                                    <span className="cursor-pointer font-bold text-gray-300"
+                                    </Link>
+                                    <span className="cursor-pointer text-white font-bold bg-blue-800 hover:bg-blue-900 focus:ring-2 focus:outline-none focus:ring-blue-400 rounded-lg text-sm w-full sm:w-auto px-3 py-2 mx-4 text-center dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-700"
                                         onClick={clienteSair}>
                                         Sair
                                     </span>
                                 </>
                                 :
-                                <Link to="/login" className="block py-2 px-3 md:p-0 text-black rounded-sm hover:bg-purple-700 md:hover:bg-transparent md:border-0 md:hover:text-purple-300 dark:text-white md:dark:hover:text-purple-400 dark:hover:bg-gray-800 dark:hover:text-white md:dark:hover:bg-transparent">
+                                <Link to="/login" className="block py-2 px-3 md:p-0 text-white rounded-sm hover:bg-blue-700 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 dark:text-white md:dark:hover:text-blue-400 dark:hover:bg-gray-800 dark:hover:text-white md:dark:hover:bg-transparent">
                                     Identifique-se
                                 </Link>
                             }
