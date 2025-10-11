@@ -1,21 +1,21 @@
-import{ CardOculos } from "./components/CardOculos";
+import { CardOculos } from "./components/CardOculos";
 import { InputPesquisa } from "./components/InputPesquisa";
-import type { OculosType } from "./utils/OculosType";
+import type { ProdutoType } from "./utils/ProdutoType";
 import { useEffect, useState } from "react";
 import { useClienteStore } from "./context/ClienteContext"
 
 const apiUrl = import.meta.env.VITE_API_URL
 
 export default function App() {
-  const [oculos, setOculos] = useState<OculosType[]>([])
+  const [produtos, setProdutos] = useState<ProdutoType[]>([])
   const { logaCliente } = useClienteStore()  
 
   useEffect(() => {
     async function buscaDados() {
-      const response = await fetch(`${apiUrl}/oculos`)
+  const response = await fetch(`${apiUrl}/produtos/destaques`)
       const dados = await response.json()
-      // Garante que o estado seja sempre um array
-      setOculos(Array.isArray(dados) ? dados : []);
+//      console.log(dados)
+  setProdutos(dados)
     }
     buscaDados()
 
@@ -27,24 +27,22 @@ export default function App() {
     if (localStorage.getItem("clienteKey")) {
       const idCliente = localStorage.getItem("clienteKey")
       buscaCliente(idCliente as string)
-    }
+    }    
   }, [])
 
-  const listaOculos = Array.isArray(oculos)
-    ? oculos.map(oculosItem => (
-        <CardOculos data={oculosItem} key={oculosItem.id} />
-      ))
-    : null;
+  const listaProdutos = produtos.map( produto => (
+    <CardOculos data={produto} key={produto.id} />
+  ))
 
   return (
     <>
-      <InputPesquisa setOculos={setOculos} />
+      <InputPesquisa setProdutos={setProdutos} />
       <div className="max-w-7xl mx-auto">
-        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black">
-          Óculos <span className="underline underline-offset-3 decoration-8 decoration-purple-400 dark:decoration-purple-600">em destaque</span>
+        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          Produtos <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">em destaque</span>
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          {listaOculos}
+          {listaProdutos}
         </div>
       </div>
     </>

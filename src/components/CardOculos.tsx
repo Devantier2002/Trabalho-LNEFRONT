@@ -1,24 +1,21 @@
 import { Link } from "react-router-dom"
-import type { OculosType } from "../utils/OculosType"
+import type { ProdutoType } from "../utils/ProdutoType"
 
-export function CardOculos({data}: {data: OculosType}) {
+export function CardOculos({data}: {data: ProdutoType}) {
     return (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-            <img className="rounded-t-lg" src={data.foto} alt={data.nome} />
+            <img className="rounded-t-lg" src={data.foto} alt={`Foto de ${data.nome}`} />
             <div className="p-5">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {data.nome}
+                     {data.nome}
                 </h5>
-                <p className="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-400">
-                    Tipo: {data.tipo}
-                </p>
-                <p className="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-400">
-                    Quantidade: {data.quantidade}
-                </p>
                 <p className="mb-3 font-extrabold text-gray-700 dark:text-gray-400">
                     Preço R$: {Number(data.preco).toLocaleString("pt-br", {
                         minimumFractionDigits: 2
                     })}
+                </p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Tipo: {data.tipo ?? '-'}
                 </p>
                 <Link to={`/detalhes/${data.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Ver Detalhes

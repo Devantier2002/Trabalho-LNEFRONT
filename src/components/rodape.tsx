@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default function Rodape() {
     return (
-        <footer className="border-t border-purple-800 bg-purple-600 dark:bg-black dark:border-black ">
+        <footer className="border-t border-blue-800 bg-blue-600 dark:bg-black dark:border-black ">
             <div className="max-w-screen-xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between">
                 
                 {/* Logo + Nome */}
@@ -39,7 +39,7 @@ export default function Rodape() {
             </div>
 
             {/* Linha final */}
-            <div className="border-t border-purple-700 dark:border-gray-700 text-center py-3 text-sm text-gray-200 dark:text-gray-400">
+            <div className="border-t border-blue-700 dark:border-gray-700 text-center py-3 text-sm text-gray-200 dark:text-gray-400">
                 © {new Date().getFullYear()} Ótica Avenida — Todos os direitos reservados
             </div>
         </footer>

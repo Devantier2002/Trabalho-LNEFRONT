@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import type { OculosType } from "../utils/OculosType";
+import type { ProdutoType } from "../utils/ProdutoType";
 
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -9,10 +9,9 @@ type Inputs = {
 }
 
 type InputPesquisaProps = {
-    setOculos: React.Dispatch<React.SetStateAction<OculosType[]>>
+    setProdutos: React.Dispatch<React.SetStateAction<ProdutoType[]>>
 }
-
-export function InputPesquisa({ setOculos }: InputPesquisaProps) {
+export function InputPesquisa({ setProdutos }: InputPesquisaProps) {
     const { register, handleSubmit, reset } = useForm<Inputs>()
 
     async function enviaPesquisa(data: Inputs) {
@@ -22,17 +21,17 @@ export function InputPesquisa({ setOculos }: InputPesquisaProps) {
             return
         }
 
-        const response = await fetch(`${apiUrl}/carros/pesquisa/${data.termo}`)
+    const response = await fetch(`${apiUrl}/produtos/pesquisa/${data.termo}`)
         const dados = await response.json()
         // console.log(dados)
-        setOculos(dados)
+    setProdutos(dados)
     }
 
     async function mostraDestaques() {
-        const response = await fetch(`${apiUrl}/oculos`)
+    const response = await fetch(`${apiUrl}/produtos/destaques`)
         const dados = await response.json()
         reset({ termo: "" })
-        setOculos(dados)
+    setProdutos(dados)
     }
 
     return (
@@ -46,7 +45,7 @@ export function InputPesquisa({ setOculos }: InputPesquisaProps) {
                         </svg>
                     </div>
                     <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Informe modelo ou marca" required 
+                        placeholder="Informe nome, marca, tipo ou preço máximo" required 
                         {...register('termo')} />
                     <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Pesquisar

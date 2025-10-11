@@ -1,6 +1,7 @@
 import Titulo from './components/Titulo.tsx'
-import { Outlet } from 'react-router-dom'
 import Rodape from './components/rodape.tsx'
+import { Outlet } from 'react-router-dom'
+
 import { Toaster } from 'sonner'
 
 export default function Layout() {

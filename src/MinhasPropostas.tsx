@@ -30,12 +30,12 @@ export default function Propostas() {
     const propostasTable = propostas.map(proposta => (
         <tr key={proposta.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <p><b>{proposta.carro.marca.nome} {proposta.carro.modelo}</b></p>
-                <p className='mt-3'>Ano: {proposta.carro.ano} -
-                    R$: {Number(proposta.carro.preco).toLocaleString("pt-br", { minimumFractionDigits: 2 })}</p>
+                <p><b> {proposta.produto.nome}</b></p>
+                <p className='mt-3'>Tipo: {proposta.produto.tipo} -
+                    R$: {Number(proposta.produto.preco).toLocaleString("pt-br", { minimumFractionDigits: 2 })}</p>
             </th>
             <td className="px-6 py-4">
-                <img src={proposta.carro.foto} className="fotoCarro" alt="Foto Carro" />
+                 <img src={proposta.produto.foto} className="fotoProduto" alt="Foto" />
             </td>
             <td className="px-6 py-4">
                 <p><b>{proposta.descricao}</b></p>
@@ -56,18 +56,18 @@ export default function Propostas() {
     return (
         <section className="max-w-7xl mx-auto">
             <h1 className="mb-6 mt-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-                Listagem de <span className="underline underline-offset-3 decoration-8 decoration-orange-400 dark:decoration-orange-600">Minhas Propostas</span></h1>
+                Listagem de <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Minhas Compras</span></h1>
 
             {propostas.length == 0 ?
-                <h2 className="mb-4 mt-10 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-                   &nbsp;&nbsp; Ah... Você ainda não fez propostas para os nossos veículos. 🙄
+                     <h2 className="mb-4 mt-10 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                         &nbsp;&nbsp; Ah... Você ainda não fez compras em nossos produtos. 🙄
                 </h2>
                 :
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                Veículo
+                                Produto
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Foto
