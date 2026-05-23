@@ -4,14 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { toast } from "sonner"
 import { useClienteStore } from "./context/ClienteContext"
+import { loginClienteLocal } from "./utils/localDb"
 
 type Inputs = {
     email: string
     senha: string
     manter: boolean
 }
-
-const apiUrl = import.meta.env.VITE_API_URL
 
 export default function Login() {
     const { register, handleSubmit } = useForm<Inputs>()    
@@ -20,18 +19,9 @@ export default function Login() {
     const navigate = useNavigate()
 
     async function verificaLogin(data: Inputs) {
-        // alert(`${data.email} ${data.senha} ${data.manter}`)
-        const response = await 
-          fetch(`${apiUrl}/clientes/login`, {
-            headers: {"Content-Type": "application/json"},
-            method: "POST",
-            body: JSON.stringify({ email: data.email, senha: data.senha })
-          })
-        
-        // console.log(response)
-        if (response.status == 200) {
-            // toast.success("Ok!")            
-            const dados = await response.json()
+                const dados = loginClienteLocal(data.email, data.senha)
+
+                if (dados) {
 
             // "coloca" os dados do cliente no contexto
             logaCliente(dados)
@@ -51,7 +41,7 @@ export default function Login() {
             // carrega a página principal, após login do cliente
             navigate("/")
         } else {
-            toast.error("Erro... Login ou senha incorretos")
+            toast.error("Erro... Login ou senha incorretos. Cadastre-se primeiro")
         }
     }
 

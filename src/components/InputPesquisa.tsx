@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { ProdutoType } from "../utils/ProdutoType";
-
-const apiUrl = import.meta.env.VITE_API_URL
+import { produtosMock } from "../data/produtosMock";
 
 type Inputs = {
     termo: string
@@ -15,23 +14,33 @@ export function InputPesquisa({ setProdutos }: InputPesquisaProps) {
     const { register, handleSubmit, reset } = useForm<Inputs>()
 
     async function enviaPesquisa(data: Inputs) {
-        // alert(data.termo)
         if (data.termo.length < 2) {
             toast.error("Informe, no mínimo, 2 caracteres")
             return
         }
 
-    const response = await fetch(`${apiUrl}/produtos/pesquisa/${data.termo}`)
-        const dados = await response.json()
-        // console.log(dados)
-    setProdutos(dados)
+        const termo = data.termo.trim().toLowerCase()
+        const precoMaximo = Number(termo)
+
+        const dados = produtosMock.filter((produto) => {
+            const textoProduto = [
+                produto.nome,
+                produto.tipo ?? "",
+                produto.marca.nome
+            ].join(" ").toLowerCase()
+
+            const combinaTexto = textoProduto.includes(termo)
+            const combinaPreco = !Number.isNaN(precoMaximo) && produto.preco <= precoMaximo
+
+            return combinaTexto || combinaPreco
+        })
+
+        setProdutos(dados)
     }
 
-    async function mostraDestaques() {
-    const response = await fetch(`${apiUrl}/produtos/destaques`)
-        const dados = await response.json()
+    function mostraDestaques() {
         reset({ termo: "" })
-    setProdutos(dados)
+        setProdutos(produtosMock)
     }
 
     return (

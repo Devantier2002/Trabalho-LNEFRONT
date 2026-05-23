@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 import { useClienteStore } from "./context/ClienteContext"
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
-
-const apiUrl = import.meta.env.VITE_API_URL
+import { produtosMock } from "./data/produtosMock"
+import { criarPropostaLocal } from "./utils/localDb"
 
 type Inputs = {
   descricao: string
@@ -20,34 +20,26 @@ export default function Detalhes() {
   const { register, handleSubmit, reset } = useForm<Inputs>()
 
   useEffect(() => {
-    async function buscaDados() {
-    const response = await fetch(`${apiUrl}/produtos/${params.produtoId}`)
-      const dados = await response.json()
-      // console.log(dados)
-      setProduto(dados)
-    }
-    buscaDados()
+    const idProduto = Number(params.produtoId)
+    const dados = produtosMock.find((item) => item.id === idProduto)
+    setProduto(dados)
   }, [])
 
   async function enviaProposta(data: Inputs) {
+    if (!produto) {
+      toast.error("Produto não encontrado")
+      return
+    }
 
-    const response = await fetch(`${apiUrl}/propostas`, {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify({
-        clienteId: cliente.id,
-          produtoId: Number(params.produtoId),
-        descricao: data.descricao
-      })
+    criarPropostaLocal({
+      cliente,
+      produto,
+      descricao: data.descricao
     })
 
-    if (response.status == 201) {
+    if (true) {
       toast.success("Obrigado. Sua proposta foi enviada. Aguarde retorno")
       reset()
-    } else {
-      toast.error("Erro... Não foi possível enviar sua proposta")
     }
   }
 

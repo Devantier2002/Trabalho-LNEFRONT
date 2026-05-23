@@ -2,21 +2,24 @@ import './MinhasPropostas.css'
 import { useEffect, useState } from "react";
 import { useClienteStore } from "./context/ClienteContext";
 import type { PropostaType } from "./utils/PropostaType";
-
-const apiUrl = import.meta.env.VITE_API_URL
+import { listarPropostasPorClienteLocal } from "./utils/localDb";
 
 export default function Propostas() {
     const [propostas, setPropostas] = useState<PropostaType[]>([])
     const { cliente } = useClienteStore()
 
     useEffect(() => {
-        async function buscaDados() {
-            const response = await fetch(`${apiUrl}/propostas/${cliente.id}`)
-            const dados = await response.json()
+        function buscaDados() {
+            if (!cliente.id) {
+                setPropostas([])
+                return
+            }
+
+            const dados = listarPropostasPorClienteLocal(cliente.id)
             setPropostas(dados)
         }
         buscaDados()
-    }, [])
+    }, [cliente.id])
 
     // para retornar apenas a data do campo no banco de dados
     // 2024-10-10T22:46:27.227Z => 10/10/2024

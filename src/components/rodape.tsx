@@ -4,7 +4,6 @@ export default function Rodape() {
     return (
         <footer className="border-t border-blue-800 bg-blue-600 dark:bg-black dark:border-black ">
             <div className="max-w-screen-xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between">
-                
                 {/* Logo + Nome */}
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse mb-4 md:mb-0">
                     <img src="./pngegg.png" className="h-10" alt="Logo Ótica Avenida" />
@@ -21,18 +20,23 @@ export default function Rodape() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/produtos" className="hover:text-purple-300">
+                        <Link to="/" className="hover:text-purple-300">
                             Produtos
                         </Link>
                     </li>
                     <li>
-                        <Link to="/sobre" className="hover:text-purple-300">
+                        <Link to="/" className="hover:text-purple-300">
                             Sobre Nós
                         </Link>
                     </li>
                     <li>
-                        <Link to="/contato" className="hover:text-purple-300">
+                        <Link to="/" className="hover:text-purple-300">
                             Contato
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/chatbot" className="hover:text-purple-300">
+                            Chatbot CNN
                         </Link>
                     </li>
                 </ul>

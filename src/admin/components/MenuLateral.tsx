@@ -39,12 +39,12 @@ export function MenuLateral() {
             </Link>
           </li>
           <li>
-            <Link to="/admin/clientes" className="flex items-center p-2">
+            <span className="flex items-center p-2 opacity-60 cursor-not-allowed" title="Rota de clientes ainda não implementada">
               <span className="h-5 text-gray-600 text-2xl">
                 <FaUsers />
               </span>
               <span className="ms-2 mt-1">Controle de Clientes</span>
-            </Link>
+            </span>
           </li>
           <li>
             <Link to="/admin/propostas" className="flex items-center p-2 cursor-pointer">

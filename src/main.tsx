@@ -7,6 +7,7 @@ import Login from './Login.tsx'
 import Detalhes from './Detalhes.tsx'
 import MinhasPropostas from './MinhasPropostas.tsx'
 import CadCliente from './CadCliente.tsx'
+import ChatbotCNN from './ChatbotCNN.tsx'
 
 // ----------------- Rotas de Admin
 import AdminLayout from './admin/AdminLayout.tsx';
@@ -18,7 +19,7 @@ import AdminPropostas from './admin/AdminPropostas.tsx';
 import AdminCadAdmin from './admin/AdminCadAdmin.tsx';          
 
 import Layout from './Layout.tsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Navigate, createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const rotas = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const rotas = createBrowserRouter([
   { path: "produtos/novo", element: <AdminNovoProduto /> },
       { path: "propostas", element: <AdminPropostas /> },  // ...
       { path: "cadAdmin", element: <AdminCadAdmin /> },  // ...
+      { path: "*", element: <Navigate to="/admin" replace /> },
     ],
   },
   {
@@ -45,7 +47,13 @@ const rotas = createBrowserRouter([
   { path: 'detalhes/:produtoId', element: <Detalhes /> },
       { path: 'minhasPropostas', element: <MinhasPropostas /> },
       { path: 'cadCliente', element: <CadCliente /> },
+      { path: 'chatbot', element: <ChatbotCNN /> },
+      { path: '*', element: <Navigate to="/" replace /> },
     ],
+  },
+  {
+    path: '*',
+    element: <Navigate to="/" replace />,
   },
 ])
 

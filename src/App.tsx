@@ -3,30 +3,20 @@ import { InputPesquisa } from "./components/InputPesquisa";
 import type { ProdutoType } from "./utils/ProdutoType";
 import { useEffect, useState } from "react";
 import { useClienteStore } from "./context/ClienteContext"
-
-const apiUrl = import.meta.env.VITE_API_URL
+import { produtosMock } from "./data/produtosMock"
+import { getClienteLocalById } from "./utils/localDb"
 
 export default function App() {
-  const [produtos, setProdutos] = useState<ProdutoType[]>([])
+  const [produtos, setProdutos] = useState<ProdutoType[]>(produtosMock)
   const { logaCliente } = useClienteStore()  
 
   useEffect(() => {
-    async function buscaDados() {
-  const response = await fetch(`${apiUrl}/produtos/destaques`)
-      const dados = await response.json()
-//      console.log(dados)
-  setProdutos(dados)
-    }
-    buscaDados()
-
-    async function buscaCliente(id: string) {
-      const response = await fetch(`${apiUrl}/clientes/${id}`)
-      const dados = await response.json()
-      logaCliente(dados)
-    }
     if (localStorage.getItem("clienteKey")) {
       const idCliente = localStorage.getItem("clienteKey")
-      buscaCliente(idCliente as string)
+      const clienteLocal = getClienteLocalById(idCliente as string)
+      if (clienteLocal) {
+        logaCliente(clienteLocal)
+      }
     }    
   }, [])
 

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 import { toast } from "sonner"
+import { cadastrarClienteLocal } from "./utils/localDb"
 
 type Inputs = {
     nome: string
@@ -9,8 +10,6 @@ type Inputs = {
     senha: string
     senha2: string
 }
-
-const apiUrl = import.meta.env.VITE_API_URL
 
 export default function CadCliente() {
     const { register, handleSubmit } = useForm<Inputs>()
@@ -22,25 +21,17 @@ export default function CadCliente() {
             return
         }
 
-        const response = await
-            fetch(`${apiUrl}/clientes`, {
-                headers: { "Content-Type": "application/json" },
-                method: "POST",
-                body: JSON.stringify({
-                    nome: data.nome,
-                    cidade: data.cidade,
-                    email: data.email,
-                    senha: data.senha
-                })
-            })
+        const resultado = cadastrarClienteLocal({
+            nome: data.nome,
+            cidade: data.cidade,
+            email: data.email,
+            senha: data.senha
+        })
 
-        console.log(response)
-        if (response.status == 201) {
+        if (resultado.ok) {
             toast.success("Ok! Cadastro realizado com sucesso...")
-            // carrega a página principal, após login do cliente
-            // navigate("/login")
         } else {
-            toast.error("Erro... Não foi possível realizar o cadastro")
+            toast.error(`Erro... ${resultado.erro}`)
         }
     }
 
