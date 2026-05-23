@@ -1,4 +1,4 @@
-# Tutorial Para iniciar o Trabalho
+# Instruções para rodar o Front
 
 1. Clonar e Mudar para a branch novo_front, npm install e npm run dev para rodar 
 
